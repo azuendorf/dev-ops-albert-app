@@ -1,0 +1,59 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: devopsalbert-service
+spec:
+  selector:
+    app: devopsalbert-service
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: devopsalbert-service
+      protocol: TCP
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devopsalbert-service
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devopsalbert-service
+  template:
+    metadata:
+      labels:
+        app: devopsalbert-service
+    spec:
+      imagePullSecrets:
+        - name: pipeline-docker-registry
+      nodeName: renterone
+      containers:
+        - name: devopsalbert-service
+          image: ${CICD_IMAGE}:latest
+          envFrom:
+            - secretRef:
+                name: devopsalbert-dev
+                optional: false
+___
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: devopsalbert-ingress
+  namespace: dev
+spec:
+  rules:
+    - host: 116.203.102.6.xip.io
+      http:
+        paths:
+          - backend:
+              serviceName: devopsalbert-service
+              servicePort: 3000
+  tls:
+    - hosts:
+        - 116.203.102.6.xip.io
+
+
