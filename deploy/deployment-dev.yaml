@@ -22,24 +22,6 @@ metadata:
     namespace: dev
 spec:
     replicas: 1
-    selector:
-        matchLabels:
-            app: devopsalbert-service
-    template:
-        metadata:
-            labels:
-                app: devopsalbert-service
-        spec:
-            imagePullSecrets:
-                - name: pipeline-docker-registry
-                  nodeName: renterone
-            containers:
-                - name: devopsalbert-service
-                  image: ${CICD_IMAGE}:latest
-                  envFrom:
-                      - secretRef:
-                          name: devopsalbert-dev
-                          optional: false
 
 ___
 
