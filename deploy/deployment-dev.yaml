@@ -12,7 +12,9 @@ spec:
       name: devopsalbert-service
       protocol: TCP
   type: ClusterIP
+
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
