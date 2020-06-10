@@ -12,3 +12,31 @@ spec:
       name: devopsalbert-service
       protocol: TCP
   type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devopsalbert-service
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devopsalbert-service
+  template:
+    metadata:
+      labels:
+        app: devopsalbert-service
+    spec:
+      imagePullSecrets:
+        - name: pipeline-doctor-registry
+      nodeName: renterone
+      containers:
+        - name: devopsalbert-service
+          image: ${CICD_IMAGE}:latest
+          envFrom:
+            - secretRef:
+                name: devopsalbert-dev
+                optional: false
+
