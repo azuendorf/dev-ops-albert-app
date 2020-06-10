@@ -51,7 +51,7 @@ spec:
     - host: 116.203.102.6.xip.io
       http:
         paths:
-          -backend:
+          - backend:
             serviceName: devopsalbert-service
             servicePort: 3000
   tls:
