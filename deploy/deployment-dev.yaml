@@ -3,3 +3,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: devopsalbert-service
+spec:
+  selector:
+    app: devopsalbert-service
+  ports:
+    - port: 3000
+      targetPort: 3000
+      name: devopsalbert-service
+      protocol: TCP
+  type: ClusterIP
