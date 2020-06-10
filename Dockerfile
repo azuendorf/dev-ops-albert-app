@@ -11,7 +11,7 @@ ENV NODE_ENV=production
 COPY --from=builder /app/dist ./dist
 COPY package.json ./
 COPY package-lock.json ./
-RUN npm run install
+RUN npm install
 EXPOSE 3000
 CMD npm run start:prod
 
