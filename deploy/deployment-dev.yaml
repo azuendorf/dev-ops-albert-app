@@ -23,7 +23,7 @@ metadata:
 spec:
   replicas: 1
   selector:
-    matchLabels:
+    matchlabels:
       app: devopsalbert-service
   template:
     metadata:
