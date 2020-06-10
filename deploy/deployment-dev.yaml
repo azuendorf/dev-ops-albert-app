@@ -20,14 +20,17 @@ kind: Deployment
 metadata:
   name: devopsalbert-service
   namespace: dev
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       otto: karl
       peter: paul
       app: devopsalbert-service
       sabine: anna
+
   template:
     metadata:
       labels:
