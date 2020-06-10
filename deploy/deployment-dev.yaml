@@ -17,18 +17,14 @@ spec:
 
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
     name: devopsalbert-service
     namespace: dev
-
 spec:
     replicas: 1
-
     selector:
         matchLabels:
             app: devopsalbert-service
-
     template:
         metadata:
             labels:
