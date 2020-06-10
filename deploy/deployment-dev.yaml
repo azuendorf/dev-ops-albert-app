@@ -8,9 +8,9 @@ spec:
         app: devopsalbert-service
     ports:
         - port: 3000
-            targetPort: 3000
-            name: devopsalbert-service
-            protocol: TCP
+          targetPort: 3000
+          name: devopsalbert-service
+          protocol: TCP
     type: ClusterIP
 
 ---
