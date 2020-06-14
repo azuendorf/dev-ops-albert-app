@@ -1,0 +1,29 @@
+stages:
+- name: Test
+  steps:
+  - runScriptConfig:
+      image: node:latest
+      shellScript: |-
+        npm install
+        npm audit
+        npm run lint
+        npm run test
+- name: Publish
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: rentcloud/devopsalbert:${CICD_EXECUTION_SEQUENCE}
+- name: Deploy
+  steps:
+  - applyYamlConfig:
+      path: ./deploy/deployment-dev.yaml
+  - applyYamlConfig:
+      path: ./deploy/deployment-stag.yaml
+  - applyYamlConfig:
+      path: ./deploy/deployment-prod.
+    when:
+      branch: master
+      event: push
+timeout: 60
+notification: {}
