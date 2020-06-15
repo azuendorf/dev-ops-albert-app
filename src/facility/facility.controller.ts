@@ -1,4 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject } from '@nestjs/common';
+import { Config } from '../config/config.interface';
 
 @Controller('facility')
 export class FacilityController {

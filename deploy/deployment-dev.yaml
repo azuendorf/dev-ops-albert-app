@@ -47,7 +47,7 @@ metadata:
   namespace: dev
 spec:
   rules:
-    - host: 116.203.102.6.xip.io
+    - host: testing.116.203.102.6.xip.io
       http:
         paths:
           - backend:
@@ -56,5 +56,5 @@ spec:
             path: /api/facility
   tls:
     - hosts:
-        - 116.203.102.6.xip.io
+        - testing.116.203.102.6.xip.io
 
